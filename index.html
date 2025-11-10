@@ -1888,78 +1888,83 @@ function openGmail() {
     });
 
 
-        // Animated Network Background
-        const canvas = document.getElementById('networkCanvas');
-        const ctx = canvas.getContext('2d');
+// Replace your Animated Network Background section with this:
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+// Animated Network Background
+const canvas = document.getElementById('networkCanvas');
+const ctx = canvas.getContext('2d');
 
-        const nodes = [];
-        const nodeCount = 50;
-        const connectionDistance = 150;
-        const nodeRadius = 1.5;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-        // Initialize nodes
-        for (let i = 0; i < nodeCount; i++) {
-            nodes.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                vx: (Math.random() - 0.5) * 0.5,
-                vy: (Math.random() - 0.5) * 0.5
-            });
-        }
+const nodes = [];
+const isMobile = window.innerWidth <= 768;
+const nodeCount = isMobile ? 15 : 50; // Fewer nodes on mobile
+const connectionDistance = isMobile ? 100 : 150; // Shorter distance on mobile
+const nodeRadius = 1.5;
 
-        function drawNetwork() {
-            ctx.fillStyle = 'rgba(15, 20, 25, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+// Initialize nodes
+for (let i = 0; i < nodeCount; i++) {
+    nodes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * (isMobile ? 0.2 : 0.5), // Slower on mobile
+        vy: (Math.random() - 0.5) * (isMobile ? 0.2 : 0.5)
+    });
+}
 
-            // Update and draw nodes
-            nodes.forEach(node => {
-                node.x += node.vx;
-                node.y += node.vy;
+function drawNetwork() {
+    // Clear canvas with solid black
+    ctx.fillStyle = '#000000';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-                if (node.x < 0) node.x = canvas.width;
-                if (node.x > canvas.width) node.x = 0;
-                if (node.y < 0) node.y = canvas.height;
-                if (node.y > canvas.height) node.y = 0;
+    // Update node positions
+    nodes.forEach(node => {
+        node.x += node.vx;
+        node.y += node.vy;
 
-                ctx.fillStyle = 'rgba(0, 200, 200, 0.6)';
+        if (node.x < 0) node.x = canvas.width;
+        if (node.x > canvas.width) node.x = 0;
+        if (node.y < 0) node.y = canvas.height;
+        if (node.y > canvas.height) node.y = 0;
+
+        // Draw faint dots
+        ctx.fillStyle = 'rgba(0, 200, 200, 0.2)';
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, nodeRadius, 0, Math.PI * 2);
+        ctx.fill();
+    });
+
+    // Draw connections (lines only)
+    ctx.strokeStyle = 'rgba(0, 200, 200, 0.5)';
+    ctx.lineWidth = 1;
+
+    for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < connectionDistance) {
+                ctx.globalAlpha = 1 - (distance / connectionDistance);
                 ctx.beginPath();
-                ctx.arc(node.x, node.y, nodeRadius, 0, Math.PI * 2);
-                ctx.fill();
-            });
-
-            // Draw connections
-            ctx.strokeStyle = 'rgba(0, 200, 200, 0.2)';
-            ctx.lineWidth = 1;
-
-            for (let i = 0; i < nodes.length; i++) {
-                for (let j = i + 1; j < nodes.length; j++) {
-                    const dx = nodes[i].x - nodes[j].x;
-                    const dy = nodes[i].y - nodes[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < connectionDistance) {
-                        ctx.globalAlpha = 1 - (distance / connectionDistance);
-                        ctx.beginPath();
-                        ctx.moveTo(nodes[i].x, nodes[i].y);
-                        ctx.lineTo(nodes[j].x, nodes[j].y);
-                        ctx.stroke();
-                        ctx.globalAlpha = 1;
-                    }
-                }
+                ctx.moveTo(nodes[i].x, nodes[i].y);
+                ctx.lineTo(nodes[j].x, nodes[j].y);
+                ctx.stroke();
+                ctx.globalAlpha = 1;
             }
-
-            requestAnimationFrame(drawNetwork);
         }
+    }
 
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
+    requestAnimationFrame(drawNetwork);
+}
 
-        drawNetwork();
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+drawNetwork();
 
         // Existing mobile menu toggle
         const menuToggle = document.getElementById('menuToggle');
