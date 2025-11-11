@@ -267,24 +267,22 @@
                     </div>
                 </div>
 
-                <!-- PLACEHOLDER PROJECT CARDS -->
-                <div class="portfolio-card">
-                    <div class="portfolio-image">💻</div>
-                    <div class="portfolio-content">
-                        <h3>Coming Soon </h3>
-                        <p>Never gonna give you up
-                        Never gonna let you down
-                        Never gonna run around and desert you
-                        Never gonna make you cry
-                        Never gonna say goodbye</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Coming Soon</span>
-                        </div>
-                        <div class="portfolio-links">
-                            <a href="#">View Project</a>
-                        </div>
-                    </div>
-                </div>
+<!-- POWER BI PROJECT CARD - ADD THIS TO YOUR PORTFOLIO SECTION -->
+<div class="portfolio-card clickable" onclick="openProjectModal('powerbiProject')">
+    <div class="portfolio-image">📊</div>
+    <div class="portfolio-content">
+        <h3>INVENTORY MANAGEMENT DASHBOARD</h3>
+        <p>Comprehensive Power BI dashboard analyzing $59.45M inventory distribution across multiple plants and material types with real-time analytics and strategic insights.</p>
+        <div class="portfolio-tags">
+            <span class="tag">Power BI</span>
+            <span class="tag">Data Analytics</span>
+            <span class="tag">Business Intelligence</span>
+        </div>
+        <div class="portfolio-links">
+            <a href="javascript:void(0)" onclick="openProjectModal('powerbiProject'); return false;">View Project</a>
+        </div>
+    </div>
+</div>
         </section>
 
         <!-- PROJECT MODALS -->
@@ -453,6 +451,116 @@
                 <p id="screenshotLabel" style="color: #8a8a8a; text-align: center; margin-top: 1rem;"></p>
             </div>
 </div>
+
+
+
+
+
+<!-- ===================== POWER BI PROJECT MODAL ===================== -->
+<div id="powerbiProject" class="project-modal">
+    <div class="project-modal-content">
+        <button class="project-modal-close" onclick="closeProjectModal('powerbiProject')">&times;</button>
+        
+        <div class="project-modal-header">
+            <h2>📊 INVENTORY MANAGEMENT DASHBOARD</h2>
+            <div class="project-modal-meta">
+                <p>📅 Project Type: Data Analytics & BI | 🎯 Focus: Supply Chain Intelligence</p>
+            </div>
+        </div>
+
+        <div class="project-modal-description">
+            <p><strong>Inventory Management Dashboard</strong> is a comprehensive Power BI solution designed to provide real-time visibility into global inventory operations. This analytics dashboard consolidates inventory data across multiple plants, material types, and geographic regions to support data-driven decision-making.</p>
+            <p>The dashboard transforms raw inventory data into actionable insights, enabling stakeholders to identify inventory distribution patterns, monitor material usage trends, and optimize resource allocation across manufacturing facilities.</p>
+        </div>
+
+        <div class="project-features">
+            <h4>🎯 Key Features & Metrics</h4>
+            <ul class="features-list">
+                <li>Total Inventory Value: $59.45M across all plants and material types</li>
+                <li>Multi-dimensional analysis by plant location (Mexico, Philippines, China, Korea, Japan, Hong Kong, Goods in Transit)</li>
+                <li>Material type categorization (FG - Finished Goods analysis)</li>
+                <li>Weekly inventory trend analysis with value fluctuation tracking</li>
+                <li>Dynamic KPI cards displaying real-time inventory values (WK20 Total: $19.71M, FG: $19.71M, ZRAW: $14.17M, SEMI: $6.29M)</li>
+                <li>Interactive drill-down capabilities for detailed inventory breakdown</li>
+                <li>Pie chart visualization showing percentage distribution by plant</li>
+                <li>Area chart tracking inventory value changes over time by week number and material type</li>
+                <li>Horizontal bar chart for material type value comparison</li>
+            </ul>
+        </div>
+
+               <div class="project-screenshots">
+            <h3>📊 Dashboard Screenshots</h3>
+            <h4 style="color: #00c8c8; margin-top: 1.5rem; margin-bottom: 1rem;">Power BI Dashboard</h4>
+            <div class="screenshots-grid">
+                <div class="screenshot-item clickable" onclick="openScreenshotModal('Assets/Screenshots/Powerbi/Dashboard.png', 'Inventory Management Dashboard')">
+                    <img src="Assets/Screenshots/Powerbi/Dashboard.png" alt="Dashboard Overview" style="width: 100%; height: auto; display: block;">
+                    <div class="screenshot-label">Main Dashboard Overview</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-tech-stack">
+            <h4>🛠️ Technology Stack & Data Model</h4>
+            <div class="tech-tags">
+                <span class="tech-tag">Power BI Desktop</span>
+                <span class="tech-tag">Power Query</span>
+                <span class="tech-tag">DAX</span>
+                <span class="tech-tag">Excel Data</span>
+                <span class="tech-tag">Data Modeling</span>
+                <span class="tech-tag">Analytics</span>
+            </div>
+        </div>
+
+        <div class="project-features" style="margin-top: 1.5rem;">
+            <h4>🔍 Data Model & Structure</h4>
+            <ul class="features-list">
+                <li><strong>Table1</strong> - Core inventory metrics including $ Value, ABC Indicator, Material Type, MRP Controller, Plant, Quantity, Week Number, Week Order, and multiple inventory value fields (WK20 FG $ Inventory, WK20 SEMI $ Inventory, WK20 Total $ Inventory, WK20 ZRAW $ Inventory)</li>
+                <li><strong>Table2</strong> - Dimension data containing Manufacturer, MRP Controller, and Planner information for cross-filtering and detailed analysis</li>
+                <li><strong>Relationships</strong> - Properly established relationships between fact and dimension tables enabling seamless filtering and drill-down analysis</li>
+                <li>Data contains weekly snapshots (WK20) across multiple plants and material types for comprehensive trend analysis</li>
+                <li>ABC Indicator for inventory classification and prioritization</li>
+            </ul>
+        </div>
+
+        <div class="project-features" style="margin-top: 1.5rem;">
+            <h4>💡 Business Insights & Applications</h4>
+            <ul class="features-list">
+                <li>Identifies Philippines as the highest-value inventory location, crucial for supply chain strategy</li>
+                <li>Tracks inventory fluctuations across weeks to detect overstocking or understocking situations</li>
+                <li>Enables material type analysis for resource optimization and inventory categorization</li>
+                <li>Supports MRP (Material Requirements Planning) decision-making with comprehensive data visualization</li>
+                <li>Provides ABC analysis capabilities for inventory prioritization and management focus</li>
+                <li>Facilitates identification of inventory trends and seasonal patterns</li>
+            </ul>
+        </div>
+
+        <div style="background: rgba(0, 200, 200, 0.1); border-left: 3px solid #00c8c8; padding: 1rem; margin-top: 1.5rem; border-radius: 5px;">
+            <p style="color: #8a8a8a; margin: 0;">
+                <strong style="color: white;">📈 Project Impact:</strong> Transformed complex inventory data into clear, actionable insights enabling supply chain managers to make informed decisions about inventory distribution, material allocation, and operational efficiency across global manufacturing facilities.
+            </p>
+        </div>
+
+        <div style="background: rgba(0, 200, 200, 0.1); border-left: 3px solid #00c8c8; padding: 1rem; margin-top: 1rem; border-radius: 5px;">
+            <p style="color: #8a8a8a; margin: 0;">
+                <strong style="color: white;">🎓 Skills Demonstrated:</strong> Advanced Power BI dashboard development, complex data modeling, DAX formula creation, data visualization design, business intelligence analysis, and supply chain domain knowledge.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
